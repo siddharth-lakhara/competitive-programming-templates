@@ -1,11 +1,12 @@
 package algo.search;
 
-import org.jetbrains.annotations.NotNull;
-
 public class BinarySearch {
 //    returns index of element if found
 //    returns -1 if element not found
-    public static int search(int @NotNull [] arr, int key) {
+    public static int search(int[] arr, int key) {
+        assert arr != null : "Null array not allowed";
+        assert arr.length != 0 : "Empty array not allowed";
+
         int low = 0;
         int high = arr.length;
         while (low <= high) {
@@ -21,14 +22,21 @@ public class BinarySearch {
             } else {
                 low = mid;
             }
+
+            if (high-low <= 1) {
+                break;
+            }
         }
         return -1;
     }
 
+//    ***
+//    Driver Code
+//    ***
+//
 //    public static void main(String[] args) {
-//        int[] arr = {1, 2, 3, 4, 5};
-//        int key = 4;
-//        int results = BinarySearch.search(arr, key);
-//        System.out.println("Found at idx " + results);
+//        int[] sortedArray = new int[]{1,2,3,4,5,6,7,9, 10};
+//        int foundAtIdx = BinarySearch.search(sortedArray, 10);
+//        System.out.println("Found: " + foundAtIdx);
 //    }
 }
