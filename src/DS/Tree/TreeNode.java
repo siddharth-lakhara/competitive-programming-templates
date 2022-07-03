@@ -1,4 +1,4 @@
-package ds.Tree;
+package DS.Tree;
 
 public class TreeNode {
     public int data;

@@ -1,4 +1,4 @@
-import ds.Tree.BinarySearchTree;
+import DS.Tree.BinarySearchTree;
 
 public class Main {
 
