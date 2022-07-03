@@ -1,22 +1,19 @@
-import DS.Tree.BinarySearchTree;
+import DS.graphs.DirectedGraph;
 
 public class Main {
 
     public static void main(String[] args) {
-        BinarySearchTree bst = new BinarySearchTree();
-        bst.addElement(5);
-        bst.addElement(3);
-        bst.addElement(2);
-        bst.addElement(4);
-        bst.addElement(9);
-        bst.addElement(7);
-        bst.addElement(11);
+        DirectedGraph G = new DirectedGraph(6);
+        G.addEdge(0,1);
+        G.addEdge(0,3);
+        G.addEdge(1,4);
+        G.addEdge(4,3);
+        G.addEdge(3,1);
+        G.addEdge(2,4);
+        G.addEdge(2,5);
+        G.addEdge(5,5);
 
-//        System.out.println(bst.search(7));
-
-//        int lca = bst.lowestCommonAncestor(7, 11);
-//        System.out.println("Lowest Common Ancestor: " + lca);
-
-        bst.floorAndCeil(100);
+//        G.printGraph();
+        G.breadthFirstSearch(0);
     }
 }
