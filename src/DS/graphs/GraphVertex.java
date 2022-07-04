@@ -1,6 +1,7 @@
 package DS.graphs;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class GraphVertex {
     public int data;
@@ -26,6 +27,10 @@ public class GraphVertex {
     public void addNeighbor(String destNodeLabel, int cost) {
         assert verifyNoEdge(destNodeLabel) : "Edge already exists";
         this.neighbors.put(destNodeLabel, cost);
+    }
+
+    public LinkedList<String> getNeighbors() {
+        return new LinkedList<>(this.neighbors.keySet());
     }
 
     public String[] getNeighborsAsList() {

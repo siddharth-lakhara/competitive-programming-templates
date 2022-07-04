@@ -25,6 +25,9 @@ public class Main {
         G.addEdge("v5", "v7");
         G.addEdge("v6", "v7");
 
-        G.printGraph();
+//        G.printGraph();
+
+        G.breadthFirstSearch("v0");
+        G.depthFirstSearch("v0");
     }
 }

@@ -1,6 +1,6 @@
 package DS.graphs;
 
-import java.util.HashMap;
+import java.util.*;
 
 // Implements directed graphs using adj list
 public class DirectedGraphAdjList {
@@ -41,24 +41,46 @@ public class DirectedGraphAdjList {
         }
     }
 
-//    public void breadthFirstSearch(int startingNode) {
-//        Queue<Integer> neighbors = new LinkedList<>();
-//        Set<Integer> visitedNodes = new HashSet<>();
-//
-//        neighbors.add(startingNode);
-//        visitedNodes.add(startingNode);
-//        while (!neighbors.isEmpty()) {
-//            int currNode = neighbors.poll();
-//            System.out.print(currNode + 1 + " ");
-//            ArrayList<Integer> neighborsRow = this.adjList.get(currNode);
-//            for (int i = 0; i < neighborsRow.size(); i++) {
-//                if (neighborsRow.get(i) != 0 && !visitedNodes.contains(i)) {
-//                    visitedNodes.add(i);
-//                    neighbors.add(i);
-//                }
-//            }
-//        }
-//    }
+    public void breadthFirstSearch(String startingNode) {
+        System.out.println("Printing Breadth First Search: ");
+        Queue<String> neighborsQueue = new LinkedList<>();
+        Set<String> visitedNodes = new HashSet<>();
+
+        neighborsQueue.add(startingNode);
+        visitedNodes.add(startingNode);
+        while (!neighborsQueue.isEmpty()) {
+            String currNode = neighborsQueue.poll();
+            System.out.print(currNode + " ");
+            LinkedList<String> neighbors = this.vertexMap.get(currNode).getNeighbors();
+            for (String neighbor : neighbors) {
+                if (!visitedNodes.contains(neighbor)) {
+                    visitedNodes.add(neighbor);
+                    neighborsQueue.add(neighbor);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    public void depthFirstSearch(String startingNode) {
+        System.out.println("Printing Depth First Search: ");
+        Set<String> visitedNodes = new HashSet<>();
+
+        this.depthFirstSearch(startingNode, visitedNodes);
+
+        System.out.println();
+    }
+
+    private void depthFirstSearch(String startingNode, Set<String> visitedNodes) {
+        System.out.print(startingNode + " ");
+        visitedNodes.add(startingNode);
+        LinkedList<String> neighbors = this.vertexMap.get(startingNode).getNeighbors();
+        for (String neighbor : neighbors) {
+            if (!visitedNodes.contains(neighbor)) {
+                depthFirstSearch(neighbor, visitedNodes);
+            }
+        }
+    }
 
 //    public static void main(String[] args) {
 //        DirectedGraphAdjList G = new DirectedGraphAdjList();
