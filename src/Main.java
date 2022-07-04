@@ -1,19 +1,15 @@
-import DS.graphs.DirectedGraph;
+import DS.disjointSet.DisjointSets;
 
 public class Main {
 
     public static void main(String[] args) {
-        DirectedGraph G = new DirectedGraph(6);
-        G.addEdge(0,1);
-        G.addEdge(0,3);
-        G.addEdge(1,4);
-        G.addEdge(4,3);
-        G.addEdge(3,1);
-        G.addEdge(2,4);
-        G.addEdge(2,5);
-        G.addEdge(5,5);
+        DisjointSets dsj = new DisjointSets(8);
+        System.out.println(dsj.findParent(0));
 
-//        G.printGraph();
-        G.breadthFirstSearch(0);
+        dsj.union(1, 3);
+        dsj.union(1,2);
+        dsj.union(2, 4);
+
+        assert dsj.findParent(1) == dsj.findParent(4);
     }
 }

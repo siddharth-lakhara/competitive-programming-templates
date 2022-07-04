@@ -10,5 +10,9 @@ This repository is a single place for all data structures algorithm that I have 
 2. Trees 
    -  Binary Search Tree
    -  
+3. Disjoint Set
+4. Graph
+   - Directed Graph (with adjacency matrix and list representation) 
+   - 
 
 ### List of Algorithms
