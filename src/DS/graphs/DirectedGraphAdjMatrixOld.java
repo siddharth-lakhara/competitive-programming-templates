@@ -3,14 +3,14 @@ package DS.graphs;
 import java.util.*;
 
 // Implements directed graph using adj matrix
-public class DirectedGraphAdjMatrix {
+public class DirectedGraphAdjMatrixOld {
     private final ArrayList<ArrayList<Integer>> adjMatrix;
 
-    public DirectedGraphAdjMatrix() {
+    public DirectedGraphAdjMatrixOld() {
         this.adjMatrix = new ArrayList<ArrayList<Integer>>();
     }
 
-    public DirectedGraphAdjMatrix(int vertices) {
+    public DirectedGraphAdjMatrixOld(int vertices) {
         this.adjMatrix = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < vertices; i++) {
             ArrayList<Integer> row = new ArrayList<>();

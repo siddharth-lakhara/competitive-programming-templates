@@ -3,10 +3,10 @@ package DS.graphs;
 import java.util.*;
 
 // Implements directed graphs using adj list
-public class DirectedGraphAdjList {
+public class DirectedGraphAdjListOld {
     private final HashMap<String, GraphVertex> vertexMap;
 
-    public DirectedGraphAdjList() {
+    public DirectedGraphAdjListOld() {
         this.vertexMap = new HashMap<>();
     }
 
