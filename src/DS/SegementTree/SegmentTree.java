@@ -33,4 +33,9 @@ public class SegmentTree {
         int[] nums = new int[]{5,2,4,1,3,7,6,4,5};
         new SegmentTree(nums);
     }
+
+//    public static void main(String[] args) {
+//        SegmentTree seg = new SegmentTree();
+//        seg.driver();
+//    }
 }
