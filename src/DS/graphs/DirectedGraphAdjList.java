@@ -5,6 +5,11 @@ import java.util.*;
 // Implements directed graphs using adj list
 public class DirectedGraphAdjList {
     private HashMap<Integer, LinkedList<Integer>> adjList;
+    enum visitedNodesColor {
+        WHITE,
+        GREY,
+        BLACK,
+    };
 
     public DirectedGraphAdjList() {
         this.adjList = new HashMap<>();
@@ -102,6 +107,42 @@ public class DirectedGraphAdjList {
         }
 
         bfs(visitingNodesQueue, visitedNodes);
+    }
+
+    public boolean detectCycle() {
+        HashMap<Integer, visitedNodesColor> visitedNodes = new HashMap<>();
+        for (int key: this.adjList.keySet()) {
+            visitedNodes.put(key, visitedNodesColor.WHITE);
+        }
+
+        for (int key: this.adjList.keySet()) {
+            boolean isCycleDetected = detectCycle(key, visitedNodes);
+            if (isCycleDetected) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean detectCycle(int currNode, HashMap<Integer, visitedNodesColor> visitedNodes) {
+        if (visitedNodes.get(currNode) == visitedNodesColor.BLACK) {
+            return false;
+        }
+        if (visitedNodes.get(currNode) == visitedNodesColor.GREY) {
+            return true;
+        }
+
+        visitedNodes.put(currNode, visitedNodesColor.GREY);
+        LinkedList<Integer> neighbors = this.adjList.get(currNode);
+        for (int n : neighbors) {
+            boolean isCycleDetected = detectCycle(n, visitedNodes);
+            if (isCycleDetected) {
+                return true;
+            }
+        }
+        visitedNodes.put(currNode, visitedNodesColor.BLACK);
+        return false;
     }
 
 //    public static void main(String[] args) {
