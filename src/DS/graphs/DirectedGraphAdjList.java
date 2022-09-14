@@ -5,11 +5,7 @@ import java.util.*;
 // Implements directed graphs using adj list
 public class DirectedGraphAdjList {
     private HashMap<Integer, LinkedList<Integer>> adjList;
-    enum visitedNodesColor {
-        WHITE,
-        GREY,
-        BLACK,
-    };
+
 
     public DirectedGraphAdjList() {
         this.adjList = new HashMap<>();
