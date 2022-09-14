@@ -1,9 +1,9 @@
-import DS.graphs.mst.PrimsAlgo;
+import DS.graphs.mst.KruskalAlgo;
 
 public class Main {
 
     public static void main(String[] args) {
-        PrimsAlgo G = new PrimsAlgo(4);
+        KruskalAlgo G = new KruskalAlgo(4);
 
         G.addEdge(0, 1, 3);
         G.addEdge(0, 2, 1);
@@ -13,6 +13,6 @@ public class Main {
 
 //        G.printGraph();
 
-        G.performPrims(0);
+        G.performKruskal();
     }
 }

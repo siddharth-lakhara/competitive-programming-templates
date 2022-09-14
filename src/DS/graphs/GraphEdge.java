@@ -50,4 +50,10 @@ public class GraphEdge implements Comparable<GraphEdge> {
         }
     }
 
+    @Override
+    public int hashCode() {
+//        force to call equals everytime
+        return 0;
+    }
+
 }
