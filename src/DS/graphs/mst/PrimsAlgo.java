@@ -78,11 +78,12 @@ public class PrimsAlgo {
 
         for (GraphEdge e : edges) {
             if (!mstSet.contains(e.destNode)) {
-                int totalWeight = nodeWeights.get(startNode) + e.weight;
-                if (totalWeight < nodeWeights.get(e.destNode)) {
-                    nodeWeights.put(e.destNode, totalWeight);
-                    PrimsHeapKey key = new PrimsHeapKey(e.destNode, totalWeight);
-                    heap.remove(key);
+                if (e.weight < nodeWeights.get(e.destNode)) {
+                    nodeWeights.put(e.destNode, e.weight);
+                    PrimsHeapKey key = new PrimsHeapKey(e.destNode, e.weight);
+                    if (heap.contains(key)) {
+                        heap.remove(key);
+                    }
                     heap.add(key);
                 }
             }
@@ -128,118 +129,18 @@ public class PrimsAlgo {
             return this.node == other.node;
         }
     }
-//        public void depthFirstSearch(int startNode) {
-//            System.out.println("Starting DFS");
-//            Set<Integer> visitedNodes = new HashSet<>();
-//            dfs(startNode, visitedNodes);
-//            System.out.println("\nDFS Finish");
-//        }
-//
-//        private void dfs(int currNode, Set<Integer> visitedNodes) {
-//            if (visitedNodes.contains(currNode)) {
-//                return ;
-//            }
-//
-//            System.out.print(currNode + " -> ");
-//            visitedNodes.add(currNode);
-//            LinkedList<Integer> children = this.adjList.get(currNode);
-//            for (int child : children) {
-//                dfs(child, visitedNodes);
-//            }
-//        }
-//
-//        public void breadthFirstSearch(int startNode) {
-//            Set<Integer> visitedNodes = new HashSet<>();
-//            Queue<Integer> visitingNodesQueue = new LinkedList<>();
-//            visitedNodes.add(startNode);
-//            visitingNodesQueue.add(startNode);
-//
-//            bfs(visitingNodesQueue, visitedNodes);
-//
-//            while (!visitingNodesQueue.isEmpty()) {
-//                int currNode = visitingNodesQueue.poll();
-//                System.out.println(currNode);
-//
-//                LinkedList<Integer> children = this.adjList.get(currNode);
-//                for (int child : children) {
-//                    if (!visitedNodes.contains(child)) {
-//                        visitedNodes.add(child);
-//                        visitingNodesQueue.add(child);
-//                    }
-//                }
-//            }
-//        }
-//
-//        private void bfs(Queue<Integer> visitingNodesQueue, Set<Integer> visitedNodes) {
-//            if (visitingNodesQueue.isEmpty()) {
-//                return;
-//            }
-//
-//            int currNode = visitingNodesQueue.poll();
-//            System.out.println(currNode);
-//
-//            LinkedList<Integer> children = this.adjList.get(currNode);
-//            for (int child : children) {
-//                if (!visitedNodes.contains(child)) {
-//                    visitedNodes.add(child);
-//                    visitingNodesQueue.add(child);
-//                }
-//            }
-//
-//            bfs(visitingNodesQueue, visitedNodes);
-//        }
-//
-//        public boolean detectCycle() {
-//            HashMap<Integer, visitedNodesColor> visitedNodes = new HashMap<>();
-//            for (int key: this.adjList.keySet()) {
-//                visitedNodes.put(key, visitedNodesColor.WHITE);
-//            }
-//
-//            for (int key: this.adjList.keySet()) {
-//                boolean isCycleDetected = detectCycle(key, visitedNodes);
-//                if (isCycleDetected) {
-//                    return true;
-//                }
-//            }
-//
-//            return false;
-//        }
-//
-//        private boolean detectCycle(int currNode, HashMap<Integer, visitedNodesColor> visitedNodes) {
-//            if (visitedNodes.get(currNode) == visitedNodesColor.BLACK) {
-//                return false;
-//            }
-//            if (visitedNodes.get(currNode) == visitedNodesColor.GREY) {
-//                return true;
-//            }
-//
-//            visitedNodes.put(currNode, visitedNodesColor.GREY);
-//            LinkedList<Integer> neighbors = this.adjList.get(currNode);
-//            for (int n : neighbors) {
-//                boolean isCycleDetected = detectCycle(n, visitedNodes);
-//                if (isCycleDetected) {
-//                    return true;
-//                }
-//            }
-//            visitedNodes.put(currNode, visitedNodesColor.BLACK);
-//            return false;
-//        }
 
 //    public static void main(String[] args) {
-//        DirectedGraphAdjList G = new DirectedGraphAdjList(8);
+//        PrimsAlgo G = new PrimsAlgo(4);
 //
-//        G.addEdge(0, 1);
-//        G.addEdge(0, 2);
-//        G.addEdge(0, 3);
-//        G.addEdge(1, 4);
-//        G.addEdge(2, 5);
-//        G.addEdge(3, 6);
-//        G.addEdge(4, 7);
-//        G.addEdge(5, 7);
-//        G.addEdge(6, 7);
+//        G.addEdge(0, 1, 3);
+//        G.addEdge(0, 2, 1);
+//        G.addEdge(1, 2, 2);
+//        G.addEdge(1, 3, 4);
+//        G.addEdge(2, 3, 5);
 //
-//        G.printGraph();
+////        G.printGraph();
 //
-//        G.breadthFirstSearch(0);
+//        G.performPrims(0);
 //    }
 }
